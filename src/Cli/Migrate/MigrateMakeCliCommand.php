@@ -112,7 +112,7 @@ class MigrateMakeCliCommand extends AbstractMigrateCommand
     $minutes = str_pad($now->minute, 2, '0', STR_PAD_LEFT);
     $seconds = str_pad($now->second, 2, '0', STR_PAD_LEFT);
     $filename = "{$year}_{$month}_{$day}_{$hour}{$minutes}{$seconds}_{$migrationName}";
-    $outputFilePath = __DIR__ . '/../../../../../' . $defaultMigrationDirectory . "/{$filename}.php";
+    $outputFilePath = __DIR__ . '/../../../../../../' . $defaultMigrationDirectory . "/{$filename}.php";
 
     // Write file
     file_put_contents($outputFilePath, $fileContents);

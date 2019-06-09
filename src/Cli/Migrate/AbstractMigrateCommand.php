@@ -17,7 +17,7 @@ abstract class AbstractMigrateCommand extends Command
   {
     parent::__construct();
 
-    $configFilePath = realpath(__DIR__ . "/../../../../../electra.yaml");
+    $configFilePath = realpath(__DIR__ . "/../../../../../../electra.yaml");
 
     if (!file_exists($configFilePath))
     {
@@ -26,7 +26,7 @@ abstract class AbstractMigrateCommand extends Command
 
     $env = Arrays::getByKey('ENV', $_ENV);
 
-    $projectRoot = __DIR__ . "/../../../../../";
+    $projectRoot = __DIR__ . "/../../../../../../";
 
     Config::addConfigDir($projectRoot);
     Config::addMergeRule("/^electra.yaml$/");

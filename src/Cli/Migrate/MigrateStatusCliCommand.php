@@ -53,7 +53,7 @@ class MigrateStatusCliCommand extends AbstractMigrateCommand
     $migrationDbRows = Migration::getAllByGroupIndexedByName();
 
     // Read yaml in project root.
-    $configFilepath = realpath(__DIR__ . "/../../../../../electra.yaml");
+    $configFilepath = realpath(__DIR__ . "/../../../../../../electra.yaml");
 
     if (!file_exists($configFilepath))
     {
