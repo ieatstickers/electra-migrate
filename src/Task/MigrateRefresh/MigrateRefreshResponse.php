@@ -1,6 +1,6 @@
 <?php
 
-namespace Electra\Module\Migration\Task\MigrateRefresh;
+namespace Electra\Migrate\Task\MigrateRefresh;
 
 use Electra\Core\Task\AbstractResponse;
 

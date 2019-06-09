@@ -1,6 +1,6 @@
 <?php
 
-namespace Electra\Module\Migration\Task\MigrateAll;
+namespace Electra\Migrate\Task\MigrateAll;
 
 use Electra\Core\Task\AbstractPayload;
 use Symfony\Component\Console\Output\Output;

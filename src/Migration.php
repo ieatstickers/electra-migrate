@@ -1,6 +1,6 @@
 <?php
 
-namespace Electra\Module\Migration;
+namespace Electra\Migrate;
 
 use Illuminate\Database\Migrations\Migration as IlluminateMigration;
 

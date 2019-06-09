@@ -1,6 +1,6 @@
 <?php
 
-namespace Electra\Module\Migration\Task\GetAllFilesByGroup;
+namespace Electra\Migrate\Task\GetAllFilesByGroup;
 
 use Electra\Core\Task\AbstractResponse;
 

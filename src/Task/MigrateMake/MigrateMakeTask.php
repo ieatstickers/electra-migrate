@@ -1,6 +1,6 @@
 <?php
 
-namespace Electra\Module\Migration\Task\MigrateMake;
+namespace Electra\Migrate\Task\MigrateMake;
 
 use Electra\Core\Task\AbstractTask;
 

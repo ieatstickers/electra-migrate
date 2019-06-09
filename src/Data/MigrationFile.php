@@ -1,6 +1,6 @@
 <?php
 
-namespace Electra\Module\Migration\Data;
+namespace Electra\Migrate\Data;
 
 use Carbon\Carbon;
 

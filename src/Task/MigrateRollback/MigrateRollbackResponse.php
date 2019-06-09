@@ -1,6 +1,6 @@
 <?php
 
-namespace Electra\Module\Migration\Task\MigrateRollback;
+namespace Electra\Migrate\Task\MigrateRollback;
 
 use Electra\Core\Task\AbstractResponse;
 
