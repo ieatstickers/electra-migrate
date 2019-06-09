@@ -3,8 +3,8 @@
 namespace Electra\Migrate\Cli\Migrate;
 
 use Electra\Config\Config;
-use Electra\Module\Migration\Task\MigrateRollback\MigrateRollbackPayload;
-use Electra\Module\Migration\Task\MigrationTasks;
+use Electra\Migrate\Task\MigrateRollback\MigrateRollbackPayload;
+use Electra\Migrate\Task\MigrationTasks;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 

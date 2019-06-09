@@ -80,7 +80,7 @@ class MigrateMakeCliCommand extends AbstractMigrateCommand
     {
         
     });';
-    $useStatements = ['use Electra\Module\Migration\Migration;'];
+    $useStatements = ['use Electra\Migrate\Migration;'];
 
     $replacements = [
       '{connection}' => $migrationConnection,

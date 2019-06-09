@@ -3,9 +3,9 @@
 namespace Electra\Migrate\Cli\Migrate;
 
 use Electra\Config\Config;
-use Electra\Module\Migration\Data\Migration;
-use Electra\Module\Migration\Task\GetAllFilesByGroup\GetAllFilesByGroupPayload;
-use Electra\Module\Migration\Task\MigrationTasks;
+use Electra\Migrate\Data\Migration;
+use Electra\Migrate\Task\GetAllFilesByGroup\GetAllFilesByGroupPayload;
+use Electra\Migrate\Task\MigrationTasks;
 use Electra\Utility\Arrays;
 use Electra\Utility\Objects;
 use Symfony\Component\Console\Input\InputInterface;

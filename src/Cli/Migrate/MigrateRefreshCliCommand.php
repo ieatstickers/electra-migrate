@@ -4,8 +4,8 @@ namespace Electra\Migrate\Cli\Migrate;
 
 use Electra\Config\Config;
 use Electra\Dal\Database\Mysql\Mysql;
-use Electra\Module\Migration\Task\MigrateAll\MigrateAllPayload;
-use Electra\Module\Migration\Task\MigrationTasks;
+use Electra\Migrate\Task\MigrateAll\MigrateAllPayload;
+use Electra\Migrate\Task\MigrationTasks;
 use Electra\Utility\Arrays;
 use Electra\Utility\Objects;
 use Symfony\Component\Console\Input\InputInterface;

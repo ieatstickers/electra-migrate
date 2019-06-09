@@ -2,15 +2,15 @@
 
 namespace Electra\Migrate\Task;
 
-use Electra\Module\Migration\Task\GetAllFilesByGroup\GetAllFilesByGroupPayload;
-use Electra\Module\Migration\Task\GetAllFilesByGroup\GetAllFilesByGroupResponse;
-use Electra\Module\Migration\Task\GetAllFilesByGroup\GetAllFilesByGroupTask;
-use Electra\Module\Migration\Task\MigrateAll\MigrateAllPayload;
-use Electra\Module\Migration\Task\MigrateAll\MigrateAllResponse;
-use Electra\Module\Migration\Task\MigrateAll\MigrateAllTask;
-use Electra\Module\Migration\Task\MigrateRollback\MigrateRollbackPayload;
-use Electra\Module\Migration\Task\MigrateRollback\MigrateRollbackResponse;
-use Electra\Module\Migration\Task\MigrateRollback\MigrateRollbackTask;
+use Electra\Migrate\Task\GetAllFilesByGroup\GetAllFilesByGroupPayload;
+use Electra\Migrate\Task\GetAllFilesByGroup\GetAllFilesByGroupResponse;
+use Electra\Migrate\Task\GetAllFilesByGroup\GetAllFilesByGroupTask;
+use Electra\Migrate\Task\MigrateAll\MigrateAllPayload;
+use Electra\Migrate\Task\MigrateAll\MigrateAllResponse;
+use Electra\Migrate\Task\MigrateAll\MigrateAllTask;
+use Electra\Migrate\Task\MigrateRollback\MigrateRollbackPayload;
+use Electra\Migrate\Task\MigrateRollback\MigrateRollbackResponse;
+use Electra\Migrate\Task\MigrateRollback\MigrateRollbackTask;
 
 class MigrationTasks
 {

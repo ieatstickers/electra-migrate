@@ -3,7 +3,7 @@
 namespace Electra\Migrate\Task\GetAllFilesByGroup;
 
 use Electra\Core\Task\AbstractTask;
-use Electra\Module\Migration\Data\MigrationFile;
+use Electra\Migrate\Data\MigrationFile;
 use Electra\Utility\Arrays;
 use Electra\Utility\Strings;
 use Symfony\Component\Console\Output\Output;

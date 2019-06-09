@@ -4,10 +4,10 @@ namespace Electra\Migrate\Task\MigrateRollback;
 
 use Electra\Config\Config;
 use Electra\Core\Task\AbstractTask;
-use Electra\Module\Migration\Data\Migration;
-use Electra\Module\Migration\Data\MigrationFile;
-use Electra\Module\Migration\Task\GetAllFilesByGroup\GetAllFilesByGroupPayload;
-use Electra\Module\Migration\Task\MigrationTasks;
+use Electra\Migrate\Data\Migration;
+use Electra\Migrate\Data\MigrationFile;
+use Electra\Migrate\Task\GetAllFilesByGroup\GetAllFilesByGroupPayload;
+use Electra\Migrate\Task\MigrationTasks;
 use Electra\Utility\Arrays;
 
 class MigrateRollbackTask extends AbstractTask
