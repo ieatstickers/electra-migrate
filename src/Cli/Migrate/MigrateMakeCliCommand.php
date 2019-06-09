@@ -1,6 +1,6 @@
 <?php
 
-namespace Electra\Cli\Electra\Commands\Migrate;
+namespace Electra\Migrate\Cli\Migrate;
 
 use Carbon\Carbon;
 use Electra\Config\Config;

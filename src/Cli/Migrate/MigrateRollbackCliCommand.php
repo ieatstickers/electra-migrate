@@ -1,6 +1,6 @@
 <?php
 
-namespace Electra\Cli\Electra\Commands\Migrate;
+namespace Electra\Migrate\Cli\Migrate;
 
 use Electra\Config\Config;
 use Electra\Module\Migration\Task\MigrateRollback\MigrateRollbackPayload;
