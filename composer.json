@@ -1,0 +1,40 @@
+{
+	"name": "electra/migrate",
+	"repositories": [
+		{
+			"type": "vcs",
+			"url":  "https://github.com/ieatstickers/electra-utility.git"
+		},
+		{
+			"type": "vcs",
+			"url":  "https://github.com/ieatstickers/electra-config.git"
+		},
+		{
+			"type": "vcs",
+			"url":  "https://github.com/ieatstickers/electra-core.git"
+		},
+		{
+			"type": "vcs",
+			"url":  "https://github.com/ieatstickers/electra-dal.git"
+		}
+	],
+	"require": {
+		"electra-core": "dev-master",
+		"electra-config": "dev-master",
+		"electra-utility": "dev-master",
+		"electra-dal": "dev-master",
+		"symfony/console": "^4.3"
+	},
+	"require-dev" : {
+	},
+	"authors": [
+		{
+			"name": "Mike Burke"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Electra\\Migrate\\": "src"
+		}
+	}
+}

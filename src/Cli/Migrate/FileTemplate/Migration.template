@@ -1,0 +1,26 @@
+<?php
+
+namespace {namespace};
+
+{useStatements}
+
+class {className} extends Migration
+{
+  /**
+   * @return mixed|void
+   * @throws \Exception
+   */
+  public function up()
+  {
+    {methodContent}
+  }
+
+  /**
+   * @return mixed|void
+   * @throws \Exception
+   */
+  public function down()
+  {
+    {methodContent}
+  }
+}
