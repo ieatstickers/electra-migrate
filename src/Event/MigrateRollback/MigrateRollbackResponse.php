@@ -11,4 +11,10 @@ class MigrateRollbackResponse extends AbstractResponse
 
   /** @var int */
   public $rolledBackMigrationsCount;
+
+  /** @return MigrateRollbackResponse */
+  public static function create(): MigrateRollbackResponse
+  {
+    return new self();
+  }
 }

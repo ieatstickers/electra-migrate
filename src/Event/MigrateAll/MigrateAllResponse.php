@@ -11,4 +11,10 @@ class MigrateAllResponse extends AbstractResponse
 
   /** @var int */
   public $executedMigrationsCount;
+
+  /** @return MigrateAllResponse */
+  public static function create(): MigrateAllResponse
+  {
+    return new self();
+  }
 }

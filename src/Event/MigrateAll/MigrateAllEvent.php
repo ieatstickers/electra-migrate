@@ -100,7 +100,7 @@ class MigrateAllEvent extends AbstractEvent
       }
     }
 
-    $response = new MigrateAllResponse();
+    $response = MigrateAllResponse::create();
     $response->success = true;
     $response->executedMigrationsCount = $migrationsRun;
 

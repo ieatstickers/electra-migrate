@@ -36,7 +36,7 @@ class MigrateRollbackEvent extends AbstractEvent
 
     if (!$lastExecuted)
     {
-      $response = new MigrateRollbackResponse();
+      $response = MigrateRollbackResponse::create();
       $response->success = true;
       $response->rolledBackMigrationsCount = 0;
       return $response;
@@ -88,7 +88,7 @@ class MigrateRollbackEvent extends AbstractEvent
       }
     }
 
-    $response = new MigrateRollbackResponse();
+    $response = MigrateRollbackResponse::create();
     $response->success = true;
     $response->rolledBackMigrationsCount = $lastBatch->count();
 

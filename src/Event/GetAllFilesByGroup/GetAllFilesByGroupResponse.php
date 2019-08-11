@@ -9,4 +9,10 @@ class GetAllFilesByGroupResponse extends AbstractResponse
 {
   /** @var array */
   public $filesByGroup;
+
+  /** @return GetAllFilesByGroupResponse */
+  public static function create(): GetAllFilesByGroupResponse
+  {
+    return new self();
+  }
 }

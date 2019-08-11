@@ -24,7 +24,7 @@ class GetAllFilesByGroupEvent extends AbstractEvent
   protected function process($payload): GetAllFilesByGroupResponse
   {
     $output = $payload->output;
-    $response = new GetAllFilesByGroupResponse();
+    $response = GetAllFilesByGroupResponse::create();
 
     $migrationDirectories = $payload->migrationDirs;
     $migrationFilesByGroup = [];
