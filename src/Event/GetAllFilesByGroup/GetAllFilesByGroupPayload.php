@@ -1,11 +1,11 @@
 <?php
 
-namespace Electra\Migrate\Task\MigrateRollback;
+namespace Electra\Migrate\Event\GetAllFilesByGroup;
 
-use Electra\Core\Task\AbstractPayload;
+use Electra\Core\Event\AbstractPayload;
 use Symfony\Component\Console\Output\Output;
 
-class MigrateRollbackPayload extends AbstractPayload
+class GetAllFilesByGroupPayload extends AbstractPayload
 {
   /** @var array */
   public $migrationDirs;
@@ -26,5 +26,11 @@ class MigrateRollbackPayload extends AbstractPayload
       'migrationDirs' => 'array',
       'output' => Output::class
     ];
+  }
+
+  /** @return GetAllFilesByGroupPayload */
+  public static function create(): GetAllFilesByGroupPayload
+  {
+    return new self();
   }
 }

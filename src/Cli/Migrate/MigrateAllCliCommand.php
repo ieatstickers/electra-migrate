@@ -3,8 +3,8 @@
 namespace Electra\Migrate\Cli\Migrate;
 
 use Electra\Config\Config;
-use Electra\Migrate\Task\MigrateAll\MigrateAllPayload;
-use Electra\Migrate\Task\MigrationTasks;
+use Electra\Migrate\Event\MigrateAll\MigrateAllPayload;
+use Electra\Migrate\Event\MigrationEvents;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -26,11 +26,11 @@ class MigrateAllCliCommand extends AbstractMigrateCommand
    */
   protected function execute(InputInterface $input, OutputInterface $output)
   {
-    $migrateAllPayload = new MigrateAllPayload();
+    $migrateAllPayload = MigrateAllPayload::create();
     $migrateAllPayload->output = $output;
     $migrateAllPayload->migrationDirs = Config::getByPath('electra:migrate:migrationDirs');
 
-    $migrateAllResponse = MigrationTasks::migrateAll($migrateAllPayload);
+    $migrateAllResponse = MigrationEvents::migrateAll($migrateAllPayload);
 
     // Migrate all failed
     if (!$migrateAllResponse->success)

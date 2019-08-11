@@ -1,8 +1,9 @@
 <?php
 
-namespace Electra\Migrate\Task\GetAllFilesByGroup;
+namespace Electra\Migrate\Event\GetAllFilesByGroup;
 
-use Electra\Core\Task\AbstractResponse;
+
+use Electra\Core\Event\AbstractResponse;
 
 class GetAllFilesByGroupResponse extends AbstractResponse
 {

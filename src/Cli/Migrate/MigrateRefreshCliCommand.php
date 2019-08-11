@@ -4,8 +4,8 @@ namespace Electra\Migrate\Cli\Migrate;
 
 use Electra\Config\Config;
 use Electra\Dal\Database\Mysql\Mysql;
-use Electra\Migrate\Task\MigrateAll\MigrateAllPayload;
-use Electra\Migrate\Task\MigrationTasks;
+use Electra\Migrate\Event\MigrateAll\MigrateAllPayload;
+use Electra\Migrate\Event\MigrationEvents;
 use Electra\Utility\Arrays;
 use Electra\Utility\Objects;
 use Symfony\Component\Console\Input\InputInterface;
@@ -82,7 +82,7 @@ class MigrateRefreshCliCommand extends AbstractMigrateCommand
     $migrateAllPayload = new MigrateAllPayload();
     $migrateAllPayload->migrationDirs = Config::getByPath("electra:migrate:migrationDirs");
     $migrateAllPayload->output = $output;
-    $migrateAllResponse = MigrationTasks::migrateAll($migrateAllPayload);
+    $migrateAllResponse = MigrationEvents::migrateAll($migrateAllPayload);
 
     // Migrate all failed
     if (!$migrateAllResponse->success)

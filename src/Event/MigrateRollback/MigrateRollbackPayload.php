@@ -1,11 +1,11 @@
 <?php
 
-namespace Electra\Migrate\Task\MigrateAll;
+namespace Electra\Migrate\Event\MigrateRollback;
 
-use Electra\Core\Task\AbstractPayload;
+use Electra\Core\Event\AbstractPayload;
 use Symfony\Component\Console\Output\Output;
 
-class MigrateAllPayload extends AbstractPayload
+class MigrateRollbackPayload extends AbstractPayload
 {
   /** @var array */
   public $migrationDirs;
@@ -26,5 +26,11 @@ class MigrateAllPayload extends AbstractPayload
       'migrationDirs' => 'array',
       'output' => Output::class
     ];
+  }
+
+  /** @return MigrateRollbackPayload */
+  public static function create(): MigrateRollbackPayload
+  {
+    return new self();
   }
 }

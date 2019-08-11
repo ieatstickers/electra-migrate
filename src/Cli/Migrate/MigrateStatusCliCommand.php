@@ -4,8 +4,8 @@ namespace Electra\Migrate\Cli\Migrate;
 
 use Electra\Config\Config;
 use Electra\Migrate\Data\Migration;
-use Electra\Migrate\Task\GetAllFilesByGroup\GetAllFilesByGroupPayload;
-use Electra\Migrate\Task\MigrationTasks;
+use Electra\Migrate\Event\GetAllFilesByGroup\GetAllFilesByGroupPayload;
+use Electra\Migrate\Event\MigrationEvents;
 use Electra\Utility\Arrays;
 use Electra\Utility\Objects;
 use Symfony\Component\Console\Input\InputInterface;
@@ -33,7 +33,7 @@ class MigrateStatusCliCommand extends AbstractMigrateCommand
   protected function execute(InputInterface $input, OutputInterface $output)
   {
     // Get all migration files
-    $allFilesPayload = new GetAllFilesByGroupPayload();
+    $allFilesPayload = GetAllFilesByGroupPayload::create();
     $allFilesPayload->output = $output;
     $migrationDirsConfig = Config::getByPath('electra:migrate:migrationDirs');
 
@@ -46,7 +46,7 @@ class MigrateStatusCliCommand extends AbstractMigrateCommand
     }
 
     $allFilesPayload->migrationDirs = $migrationDirsConfig;
-    $allFilesResponse = MigrationTasks::getAllFilesByGroup($allFilesPayload);
+    $allFilesResponse = MigrationEvents::getAllFilesByGroup($allFilesPayload);
     $migrationFilesByGroup = $allFilesResponse->filesByGroup;
 
     // Get all migrations from the database

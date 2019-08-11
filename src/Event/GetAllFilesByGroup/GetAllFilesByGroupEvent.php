@@ -1,14 +1,14 @@
 <?php
 
-namespace Electra\Migrate\Task\GetAllFilesByGroup;
+namespace Electra\Migrate\Event\GetAllFilesByGroup;
 
-use Electra\Core\Task\AbstractTask;
+use Electra\Core\Event\AbstractEvent;
 use Electra\Migrate\Data\MigrationFile;
 use Electra\Utility\Arrays;
 use Electra\Utility\Strings;
 use Symfony\Component\Console\Output\Output;
 
-class GetAllFilesByGroupTask extends AbstractTask
+class GetAllFilesByGroupEvent extends AbstractEvent
 {
   /** @return string */
   public function getPayloadClass(): string

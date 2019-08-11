@@ -1,17 +1,18 @@
 <?php
 
-namespace Electra\Migrate\Task\MigrateAll;
+namespace Electra\Migrate\Event\MigrateAll;
 
 use Carbon\Carbon;
 use Electra\Config\Config;
-use Electra\Core\Task\AbstractTask;
+use Electra\Core\Event\AbstractEvent;
 use Electra\Migrate\Data\Migration;
 use Electra\Migrate\Data\MigrationFile;
-use Electra\Migrate\Task\GetAllFilesByGroup\GetAllFilesByGroupPayload;
-use Electra\Migrate\Task\MigrationTasks;
+use Electra\Migrate\Event\GetAllFilesByGroup\GetAllFilesByGroupPayload;
+use Electra\Migrate\Event\MigrationEvents;
 use Electra\Utility\Arrays;
+use Electra\Migrate\Migration as ElectraMigration;
 
-class MigrateAllTask extends AbstractTask
+class MigrateAllEvent extends AbstractEvent
 {
   /** @return string */
   public function getPayloadClass(): string
@@ -29,7 +30,7 @@ class MigrateAllTask extends AbstractTask
     $allFilesPayload = new GetAllFilesByGroupPayload();
     $output = $payload->output;
     $allFilesPayload->migrationDirs = Config::getByPath('electra:migrate:migrationDirs');
-    $allFilesByGroupResponse = MigrationTasks::getAllFilesByGroup($allFilesPayload);
+    $allFilesByGroupResponse = MigrationEvents::getAllFilesByGroup($allFilesPayload);
     $executedMigrationsByGroupAndName = Migration::getAllExecutedIndexedByGroupAndName();
     $lastExecuted = Migration::getLastExecuted();
     $batch = $lastExecuted ? $lastExecuted->batch + 1 : 1;
@@ -77,7 +78,7 @@ class MigrateAllTask extends AbstractTask
 
         include "$migrationFile->filepath";
 
-        /** @var \Electra\Module\Migration\Migration $migrationInstance */
+        /** @var ElectraMigration $migrationInstance */
         $migrationInstance = new $migrationFile->fqns();
         $migrationInstance->up();
 

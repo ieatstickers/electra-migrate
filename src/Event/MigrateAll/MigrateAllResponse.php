@@ -1,8 +1,8 @@
 <?php
 
-namespace Electra\Migrate\Task\MigrateAll;
+namespace Electra\Migrate\Event\MigrateAll;
 
-use Electra\Core\Task\AbstractResponse;
+use Electra\Core\Event\AbstractResponse;
 
 class MigrateAllResponse extends AbstractResponse
 {

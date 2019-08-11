@@ -1,8 +1,8 @@
 <?php
 
-namespace Electra\Migrate\Task\MigrateRollback;
+namespace Electra\Migrate\Event\MigrateRollback;
 
-use Electra\Core\Task\AbstractResponse;
+use Electra\Core\Event\AbstractResponse;
 
 class MigrateRollbackResponse extends AbstractResponse
 {
