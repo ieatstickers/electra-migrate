@@ -20,6 +20,7 @@ class MigrateMakeCliCommand extends AbstractMigrateCommand
       ->setDescription('Generate a new migration')
       ->setHelp('Generate a new migration file and add it to the configured migrations directory')
       ->addArgument('name', InputArgument::REQUIRED, 'What is your migration called? e.g. CreateUserTable')
+      ->addArgument('migrationDir', InputArgument::OPTIONAL, 'What migration directory should be used? e.g. billing')
       ->addArgument('connection', InputArgument::OPTIONAL, 'What database connection will this migration use?')
       ->addArgument('table', InputArgument::OPTIONAL, 'What database table will this migration use?')
     ;
@@ -34,7 +35,7 @@ class MigrateMakeCliCommand extends AbstractMigrateCommand
   protected function execute(InputInterface $input, OutputInterface $output)
   {
     $outputMigrationDirectories = Config::getByPath('electra:migrate:migrationDirs');
-    $defaultMigrationDirectory = null;
+    $migrationDirectory = null;
     $migrationName = $input->getArgument('name');
     $migrationConnection = $input->getArgument('connection');
     $migrationTable = $input->getArgument('table');
@@ -50,26 +51,44 @@ class MigrateMakeCliCommand extends AbstractMigrateCommand
       die;
     }
 
-    // Find default migration directory and namespace (error if they don't exist)
-    foreach ($outputMigrationDirectories as $dirKey => $outputMigrationDirectory)
+    if (
+    $inputDir = $input->getArgument('migrationDir')
+      && $input->getArgument('migrationDir') !== 'default'
+    )
     {
-      if (Arrays::getByKey('default', $outputMigrationDirectory))
+      $outputMigrationDirectory = isset($outputMigrationDirectories[$inputDir]) ? $outputMigrationDirectories[$inputDir] : null;
+      $migrationDirectory = Arrays::getByKey('dirPath', $outputMigrationDirectory);
+      $migrationNamespace = Arrays::getByKey('namespace', $outputMigrationDirectory);
+
+      if (!$migrationNamespace)
       {
-        $defaultMigrationDirectory = Arrays::getByKey('dirPath', $outputMigrationDirectory);
-        $migrationNamespace = Arrays::getByKey('namespace', $outputMigrationDirectory);
-
-        if (!$migrationNamespace)
+        $output->writeln("<fg=red>No namespace found for migration directory: $inputDir</>");
+        die;
+      }
+    }
+    else
+    {
+      // Find default migration directory and namespace (error if they don't exist)
+      foreach ($outputMigrationDirectories as $dirKey => $outputMigrationDirectory)
+      {
+        if (Arrays::getByKey('default', $outputMigrationDirectory))
         {
-          $output->writeln("<fg=red>No namespace found for default migration directory: $dirKey</>");
-          die;
-        }
+          $migrationDirectory = Arrays::getByKey('dirPath', $outputMigrationDirectory);
+          $migrationNamespace = Arrays::getByKey('namespace', $outputMigrationDirectory);
 
-        break;
+          if (!$migrationNamespace)
+          {
+            $output->writeln("<fg=red>No namespace found for default migration directory: $dirKey</>");
+            die;
+          }
+
+          break;
+        }
       }
     }
 
     // Error if it doesn't exist
-    if (!$defaultMigrationDirectory)
+    if (!$migrationDirectory)
     {
       $output->writeln("<fg=red>Cannot use the migrate:make command without specifying a default migration directory and namespace in electra.yaml</>");
       die;
@@ -112,7 +131,7 @@ class MigrateMakeCliCommand extends AbstractMigrateCommand
     $minutes = str_pad($now->minute, 2, '0', STR_PAD_LEFT);
     $seconds = str_pad($now->second, 2, '0', STR_PAD_LEFT);
     $filename = "{$year}_{$month}_{$day}_{$hour}{$minutes}{$seconds}_{$migrationName}";
-    $outputFilePath = __DIR__ . '/../../../../../../' . $defaultMigrationDirectory . "/{$filename}.php";
+    $outputFilePath = __DIR__ . '/../../../../../../' . $migrationDirectory . "/{$filename}.php";
 
     // Write file
     file_put_contents($outputFilePath, $fileContents);
