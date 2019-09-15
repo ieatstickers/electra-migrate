@@ -20,9 +20,9 @@ class MigrateMakeCliCommand extends AbstractMigrateCommand
       ->setDescription('Generate a new migration')
       ->setHelp('Generate a new migration file and add it to the configured migrations directory')
       ->addArgument('name', InputArgument::REQUIRED, 'What is your migration called? e.g. CreateUserTable')
-      ->addArgument('migrationDir', InputArgument::OPTIONAL, 'What migration directory should be used? e.g. billing')
       ->addArgument('connection', InputArgument::OPTIONAL, 'What database connection will this migration use?')
       ->addArgument('table', InputArgument::OPTIONAL, 'What database table will this migration use?')
+      ->addArgument('migrationDir', InputArgument::OPTIONAL, 'What migration directory should be used? e.g. billing')
     ;
   }
 
@@ -51,9 +51,11 @@ class MigrateMakeCliCommand extends AbstractMigrateCommand
       die;
     }
 
+    $inputDir = $input->getArgument('migrationDir');
+
     if (
-    $inputDir = $input->getArgument('migrationDir')
-      && $input->getArgument('migrationDir') !== 'default'
+      $inputDir
+      && $inputDir !== 'default'
     )
     {
       $outputMigrationDirectory = isset($outputMigrationDirectories[$inputDir]) ? $outputMigrationDirectories[$inputDir] : null;
