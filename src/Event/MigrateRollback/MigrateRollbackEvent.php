@@ -26,7 +26,7 @@ class MigrateRollbackEvent extends AbstractEvent
    */
   protected function process($payload): MigrateRollbackResponse
   {
-    $allFilesPayload = new GetAllFilesByGroupPayload();
+    $allFilesPayload = GetAllFilesByGroupPayload::create();
     $output = $payload->output;
     $allFilesPayload->migrationDirs = Config::getByPath('electra:migrate:migrationDirs');
     $allFilesByGroupResponse = MigrationEvents::getAllFilesByGroup($allFilesPayload);

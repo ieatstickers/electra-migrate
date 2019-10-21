@@ -27,7 +27,7 @@ class MigrateAllEvent extends AbstractEvent
    */
   protected function process($payload): MigrateAllResponse
   {
-    $allFilesPayload = new GetAllFilesByGroupPayload();
+    $allFilesPayload = GetAllFilesByGroupPayload::create();
     $output = $payload->output;
     $allFilesPayload->migrationDirs = Config::getByPath('electra:migrate:migrationDirs');
     $allFilesByGroupResponse = MigrationEvents::getAllFilesByGroup($allFilesPayload);
