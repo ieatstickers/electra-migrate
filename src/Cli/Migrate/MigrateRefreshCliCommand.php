@@ -79,7 +79,7 @@ class MigrateRefreshCliCommand extends AbstractMigrateCommand
       "<fg=green>All databases cleared successfully</>"
     );
 
-    $migrateAllPayload = new MigrateAllPayload();
+    $migrateAllPayload = MigrateAllPayload::create();
     $migrateAllPayload->migrationDirs = Config::getByPath("electra:migrate:migrationDirs");
     $migrateAllPayload->output = $output;
     $migrateAllResponse = MigrationEvents::migrateAll($migrateAllPayload);
