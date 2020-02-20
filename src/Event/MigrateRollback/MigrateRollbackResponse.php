@@ -4,6 +4,11 @@ namespace Electra\Migrate\Event\MigrateRollback;
 
 use Electra\Core\Event\AbstractResponse;
 
+/**
+ * Class MigrateRollbackResponse
+ * @package Electra\Migrate\Event\MigrateRollback
+ * @method static create($data = [])
+ */
 class MigrateRollbackResponse extends AbstractResponse
 {
   /** @var bool */
@@ -11,10 +16,4 @@ class MigrateRollbackResponse extends AbstractResponse
 
   /** @var int */
   public $rolledBackMigrationsCount;
-
-  /** @return MigrateRollbackResponse */
-  public static function create(): MigrateRollbackResponse
-  {
-    return new self();
-  }
 }

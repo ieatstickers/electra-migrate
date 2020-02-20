@@ -4,6 +4,11 @@ namespace Electra\Migrate\Event\MigrateAll;
 
 use Electra\Core\Event\AbstractResponse;
 
+/**
+ * Class MigrateAllResponse
+ * @package Electra\Migrate\Event\MigrateAll
+ * @method static create($data = [])
+ */
 class MigrateAllResponse extends AbstractResponse
 {
   /** @var bool */
@@ -11,10 +16,4 @@ class MigrateAllResponse extends AbstractResponse
 
   /** @var int */
   public $executedMigrationsCount;
-
-  /** @return MigrateAllResponse */
-  public static function create(): MigrateAllResponse
-  {
-    return new self();
-  }
 }
