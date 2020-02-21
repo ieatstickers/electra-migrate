@@ -6,8 +6,7 @@ use Electra\Core\Event\AbstractResponse;
 
 /**
  * Class MigrateAllResponse
- * @package Electra\Migrate\Event\MigrateAll
- * @method static create($data = [])
+ * @method static $this create($data = [])
  */
 class MigrateAllResponse extends AbstractResponse
 {

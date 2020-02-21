@@ -6,8 +6,7 @@ use Electra\Core\Event\AbstractResponse;
 
 /**
  * Class GetAllFilesByGroupResponse
- * @package Electra\Migrate\Event\GetAllFilesByGroup
- * @method static create($data = [])
+ * @method static $this create($data = [])
  */
 class GetAllFilesByGroupResponse extends AbstractResponse
 {

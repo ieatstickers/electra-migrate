@@ -7,8 +7,7 @@ use Symfony\Component\Console\Output\Output;
 
 /**
  * Class MigrateRollbackPayload
- * @package Electra\Migrate\Event\MigrateRollback
- * @method static create($data = [])
+ * @method static $this create($data = [])
  */
 class MigrateRollbackPayload extends AbstractPayload
 {

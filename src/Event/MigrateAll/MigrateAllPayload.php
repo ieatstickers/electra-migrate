@@ -7,8 +7,7 @@ use Symfony\Component\Console\Output\Output;
 
 /**
  * Class MigrateAllPayload
- * @package Electra\Migrate\Event\MigrateAll
- * @method static create($data = [])
+ * @method static $this create($data = [])
  */
 class MigrateAllPayload extends AbstractPayload
 {

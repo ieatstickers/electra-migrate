@@ -7,8 +7,7 @@ use Symfony\Component\Console\Output\Output;
 
 /**
  * Class GetAllFilesByGroupPayload
- * @package Electra\Migrate\Event\GetAllFilesByGroup
- * @method static create($data = [])
+ * @method static $this create($data = [])
  */
 class GetAllFilesByGroupPayload extends AbstractPayload
 {

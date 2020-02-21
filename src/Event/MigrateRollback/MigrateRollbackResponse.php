@@ -6,8 +6,7 @@ use Electra\Core\Event\AbstractResponse;
 
 /**
  * Class MigrateRollbackResponse
- * @package Electra\Migrate\Event\MigrateRollback
- * @method static create($data = [])
+ * @method static $this create($data = [])
  */
 class MigrateRollbackResponse extends AbstractResponse
 {
