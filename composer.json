@@ -19,6 +19,10 @@
 		},
 		{
 			"type": "vcs",
+			"url":  "https://github.com/ieatstickers/electra-web.git"
+		},
+		{
+			"type": "vcs",
 			"url":  "https://github.com/ieatstickers/electra-jwt.git"
 		}
 	],
@@ -27,7 +31,8 @@
 		"electra/config": "dev-master",
 		"electra/utility": "dev-master",
 		"electra/dal": "dev-master",
-		"electra/jwt": "dev-master"
+		"electra/jwt": "dev-master",
+		"electra/web": "dev-master"
 	},
 	"require-dev" : {
 	},
