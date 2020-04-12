@@ -25,8 +25,6 @@ abstract class AbstractMigrateCommand extends Command
 
     $env = getenv('ENVR');
 
-    var_dump($env); die;
-
     $projectRoot = __DIR__ . "/../../../../../../";
 
     Config::addConfigDir($projectRoot);
@@ -38,6 +36,8 @@ abstract class AbstractMigrateCommand extends Command
     }
 
     Config::generate();
+
+    var_dump(Config::getByPath('electra:dal:users:app:password')); die;
 
     $dbUsers = Config::getByPath('electra:dal:users');
 
