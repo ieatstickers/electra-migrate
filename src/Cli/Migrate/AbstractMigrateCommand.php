@@ -37,7 +37,7 @@ abstract class AbstractMigrateCommand extends Command
 
     Config::generate();
 
-    var_dump(Config::getByPath('electra:dal:users:app:password')); die;
+    var_dump(Config::getByPath('electra:dal:users:migration:password'));
 
     $dbUsers = Config::getByPath('electra:dal:users');
 
@@ -47,6 +47,8 @@ abstract class AbstractMigrateCommand extends Command
     }
 
     $selectedUser = Config::getByPath('electra:migrate:dbUser');
+
+    var_dump(Config::getByPath('$selectedUser')); die;
 
     if ($selectedUser)
     {
