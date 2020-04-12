@@ -24,7 +24,7 @@ abstract class AbstractMigrateCommand extends Command
       throw new \Exception("electra.yaml not found in project root: $configFilePath");
     }
 
-    $env = Arrays::getByKey('ENV', $_ENV);
+    $env = getenv('ENVR');
 
     $projectRoot = __DIR__ . "/../../../../../../";
 
@@ -33,7 +33,7 @@ abstract class AbstractMigrateCommand extends Command
 
     if ($env)
     {
-      Config::addMergeRule("/^$env-electra.yaml$/");
+      Config::addMergeRule("/^electra\.$env\.yaml$/");
     }
 
     Config::generate();
