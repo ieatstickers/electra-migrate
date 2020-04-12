@@ -37,8 +37,6 @@ abstract class AbstractMigrateCommand extends Command
 
     Config::generate();
 
-    var_dump(Config::getByPath('electra:dal:users:migration:password'));
-
     $dbUsers = Config::getByPath('electra:dal:users');
 
     if ($dbUsers)
@@ -48,11 +46,9 @@ abstract class AbstractMigrateCommand extends Command
 
     $selectedUser = Config::getByPath('electra:migrate:dbUser');
 
-    var_dump($selectedUser); die;
-
     if ($selectedUser)
     {
-      Mysql::setUser($selectedUser, true);
+      Mysql::setUser($selectedUser, false);
     }
 
     $connections = Config::getByPath('electra:dal:connections');
