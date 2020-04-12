@@ -25,6 +25,8 @@ abstract class AbstractMigrateCommand extends Command
 
     $env = getenv('ENVR');
 
+    var_dump($env); die;
+
     $projectRoot = __DIR__ . "/../../../../../../";
 
     Config::addConfigDir($projectRoot);
