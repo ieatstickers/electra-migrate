@@ -48,7 +48,7 @@ abstract class AbstractMigrateCommand extends Command
 
     $selectedUser = Config::getByPath('electra:migrate:dbUser');
 
-    var_dump(Config::getByPath('$selectedUser')); die;
+    var_dump($selectedUser); die;
 
     if ($selectedUser)
     {
