@@ -4,7 +4,6 @@ namespace Electra\Migrate\Cli\Migrate;
 
 use Electra\Config\Config;
 use Electra\Dal\Database\Mysql\Mysql;
-use Electra\Utility\Arrays;
 use Symfony\Component\Console\Command\Command;
 
 abstract class AbstractMigrateCommand extends Command
@@ -33,7 +32,7 @@ abstract class AbstractMigrateCommand extends Command
 
     if ($env)
     {
-      Config::addMergeRule("/^electra\.$env\.yaml$/");
+      Config::addMergeRule("/^electra\.{$env}\.yaml/");
     }
 
     Config::generate();
