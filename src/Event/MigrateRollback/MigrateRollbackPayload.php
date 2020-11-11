@@ -28,7 +28,7 @@ class MigrateRollbackPayload extends AbstractPayload
   public function getPropertyTypes(): array
   {
     return [
-      'migrationDirs' => Type::array(Type::string()),
+      'migrationDirs' => Type::array(),
       'output' => Type::class(Output::class)
     ];
   }
