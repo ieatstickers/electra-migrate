@@ -3,7 +3,7 @@
 namespace Electra\Migrate\Data;
 
 use Carbon\Carbon;
-use Electra\Dal\Data\Collection;
+use Electra\Utility\Collection;
 use Electra\Utility\Objects;
 
 class Migration
