@@ -3,6 +3,7 @@
 namespace Electra\Migrate\Event\MigrateRollback;
 
 use Electra\Core\Event\AbstractPayload;
+use Electra\Core\Event\Type\Type;
 use Symfony\Component\Console\Output\Output;
 
 /**
@@ -27,8 +28,8 @@ class MigrateRollbackPayload extends AbstractPayload
   public function getPropertyTypes(): array
   {
     return [
-      'migrationDirs' => 'array',
-      'output' => Output::class
+      'migrationDirs' => Type::array(Type::string()),
+      'output' => Type::class(Output::class)
     ];
   }
 }
