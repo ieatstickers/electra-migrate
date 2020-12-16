@@ -30,9 +30,7 @@
 		"electra/core": "dev-master",
 		"electra/config": "dev-master",
 		"electra/utility": "dev-master",
-		"electra/dal": "dev-master",
-		"electra/jwt": "dev-master",
-		"electra/web": "dev-master"
+		"electra/dal": "dev-master"
 	},
 	"require-dev" : {
 	},
