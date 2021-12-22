@@ -30,7 +30,7 @@
 		"electra/core": "dev-php8.1-upgrade",
 		"electra/config": "dev-php8.1-upgrade",
 		"electra/utility": "dev-php8.1-upgrade",
-		"electra/dal": "dev-master"
+		"electra/dal": "dev-php8.1-upgrade"
 	},
 	"require-dev" : {
 	},
