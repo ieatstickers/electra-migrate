@@ -27,9 +27,9 @@
 		}
 	],
 	"require": {
-		"electra/core": "dev-master",
-		"electra/config": "dev-master",
-		"electra/utility": "dev-master",
+		"electra/core": "dev-php8.1-upgrade",
+		"electra/config": "dev-php8.1-upgrade",
+		"electra/utility": "dev-php8.1-upgrade",
 		"electra/dal": "dev-master"
 	},
 	"require-dev" : {
