@@ -5,6 +5,7 @@ namespace Electra\Migrate\Cli\Migrate;
 use Electra\Config\Config;
 use Electra\Migrate\Event\MigrateRollback\MigrateRollbackPayload;
 use Electra\Migrate\Event\MigrationEvents;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -36,8 +37,8 @@ class MigrateRollbackCliCommand extends AbstractMigrateCommand
     // Migrate all failed
     if (!$migrateAllResponse->success)
     {
-      $output->writeln("<fg=green>An error occurred while rolling back migrations</>");
-      return;
+      $output->writeln("<fg=red>An error occurred while rolling back migrations</>");
+      return Command::FAILURE;
     }
 
     // Successfully run migrations
@@ -47,9 +48,10 @@ class MigrateRollbackCliCommand extends AbstractMigrateCommand
       $output->writeln(
         "<fg=green>{$migrateAllResponse->rolledBackMigrationsCount} migration{$pluralMigration} rolled back successfully</>"
       );
-      return;
+      return Command::SUCCESS;
     }
 
     $output->writeln("<fg=green>No migrations to rollback</>");
+    return Command::SUCCESS;
   }
 }

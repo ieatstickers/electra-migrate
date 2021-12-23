@@ -5,6 +5,7 @@ namespace Electra\Migrate\Cli\Migrate;
 use Electra\Config\Config;
 use Electra\Migrate\Event\MigrateAll\MigrateAllPayload;
 use Electra\Migrate\Event\MigrationEvents;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -35,8 +36,8 @@ class MigrateAllCliCommand extends AbstractMigrateCommand
     // Migrate all failed
     if (!$migrateAllResponse->success)
     {
-      $output->writeln("<fg=green>An error occurred while running migrations</>");
-      return;
+      $output->writeln("<fg=red>An error occurred while running migrations</>");
+      return Command::FAILURE;
     }
 
     // Successfully run migrations
@@ -46,9 +47,11 @@ class MigrateAllCliCommand extends AbstractMigrateCommand
       $output->writeln(
         "<fg=green>{$migrateAllResponse->executedMigrationsCount} migration{$pluralMigration} executed successfully</>"
       );
-      return;
+
+      return Command::SUCCESS;
     }
 
     $output->writeln("<fg=green>Already up to date. No new migrations found</>");
+    return Command::SUCCESS;
   }
 }

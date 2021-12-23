@@ -8,6 +8,7 @@ use Electra\Migrate\Event\MigrateAll\MigrateAllPayload;
 use Electra\Migrate\Event\MigrationEvents;
 use Electra\Utility\Arrays;
 use Electra\Utility\Objects;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
@@ -36,7 +37,7 @@ class MigrateRefreshCliCommand extends AbstractMigrateCommand
 
     if (!$helper->ask($input, $output, $question)) {
       $output->writeln("<fg=red>Aborted</>");
-      return;
+      return Command::FAILURE;
     }
 
     $defaultConnectionName = Mysql::connection()->getName();
@@ -75,9 +76,7 @@ class MigrateRefreshCliCommand extends AbstractMigrateCommand
     // Drop all tables in default database
     Mysql::schema()->dropAllTables();
 
-    $output->writeln(
-      "<fg=green>All databases cleared successfully</>"
-    );
+    $output->writeln("<fg=green>All databases cleared successfully</>");
 
     $migrateAllPayload = MigrateAllPayload::create();
     $migrateAllPayload->migrationDirs = Config::getByPath("electra:migrate:migrationDirs");
@@ -87,8 +86,8 @@ class MigrateRefreshCliCommand extends AbstractMigrateCommand
     // Migrate all failed
     if (!$migrateAllResponse->success)
     {
-      $output->writeln("<fg=green>An error occurred while running migrations</>");
-      return;
+      $output->writeln("<fg=red>An error occurred while running migrations</>");
+      return Command::FAILURE;
     }
 
     // Successfully run migrations
@@ -98,7 +97,10 @@ class MigrateRefreshCliCommand extends AbstractMigrateCommand
       $output->writeln(
         "<fg=green>{$migrateAllResponse->executedMigrationsCount} migration{$pluralMigration} executed successfully</>"
       );
-      return;
+
+      return Command::SUCCESS;
     }
+
+    return Command::SUCCESS;
   }
 }

@@ -8,6 +8,7 @@ use Electra\Migrate\Event\GetAllFilesByGroup\GetAllFilesByGroupPayload;
 use Electra\Migrate\Event\MigrationEvents;
 use Electra\Utility\Arrays;
 use Electra\Utility\Objects;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -39,10 +40,8 @@ class MigrateStatusCliCommand extends AbstractMigrateCommand
 
     if (!$migrationDirsConfig)
     {
-      $output->writeln(
-        "<fg=red>'migrationsDirs' not found in electra.yaml</>"
-      );
-      die;
+      $output->writeln("<fg=red>'migrationsDirs' not found in electra.yaml</>");
+      return Command::FAILURE;
     }
 
     $allFilesPayload->migrationDirs = $migrationDirsConfig;
@@ -57,20 +56,15 @@ class MigrateStatusCliCommand extends AbstractMigrateCommand
 
     if (!file_exists($configFilepath))
     {
-      $output->writeln(
-        "<fg=red>electra.yaml not found in project root: $configFilepath</>"
-      );
-      die;
+      $output->writeln("<fg=red>electra.yaml not found in project root: $configFilepath</>");
+      return Command::FAILURE;
     }
 
     $groupDisplayNamesByKey = [];
 
-    if ($migrationDirsConfig)
+    foreach ($migrationDirsConfig as $group => $migrationDirConfig)
     {
-      foreach ($migrationDirsConfig as $group => $migrationDirConfig)
-      {
-        $groupDisplayNamesByKey[$group] = Arrays::getByKey('name', $migrationDirConfig);
-      }
+      $groupDisplayNamesByKey[$group] = Arrays::getByKey('name', $migrationDirConfig);
     }
 
     foreach ($migrationFilesByGroup as $group => $migrationFiles)
@@ -106,5 +100,7 @@ class MigrateStatusCliCommand extends AbstractMigrateCommand
         );
       }
     }
+
+    return Command::SUCCESS;
   }
 }

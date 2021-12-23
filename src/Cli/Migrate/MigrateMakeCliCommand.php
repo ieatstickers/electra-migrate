@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Electra\Config\Config;
 use Electra\Utility\Arrays;
 use Electra\Utility\Strings;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -48,7 +49,7 @@ class MigrateMakeCliCommand extends AbstractMigrateCommand
     )
     {
       $output->writeln("<fg=red>Connection and table options must be provided together or not at all.</>");
-      die;
+      return Command::FAILURE;
     }
 
     $inputDir = $input->getArgument('migrationDir');
@@ -58,14 +59,14 @@ class MigrateMakeCliCommand extends AbstractMigrateCommand
       && $inputDir !== 'default'
     )
     {
-      $outputMigrationDirectory = isset($outputMigrationDirectories[$inputDir]) ? $outputMigrationDirectories[$inputDir] : null;
+      $outputMigrationDirectory = $outputMigrationDirectories[$inputDir] ?? null;
       $migrationDirectory = Arrays::getByKey('dirPath', $outputMigrationDirectory);
       $migrationNamespace = Arrays::getByKey('namespace', $outputMigrationDirectory);
 
       if (!$migrationNamespace)
       {
         $output->writeln("<fg=red>No namespace found for migration directory: $inputDir</>");
-        die;
+        return Command::FAILURE;
       }
     }
     else
@@ -81,7 +82,7 @@ class MigrateMakeCliCommand extends AbstractMigrateCommand
           if (!$migrationNamespace)
           {
             $output->writeln("<fg=red>No namespace found for default migration directory: $dirKey</>");
-            die;
+            return Command::FAILURE;
           }
 
           break;
@@ -93,7 +94,7 @@ class MigrateMakeCliCommand extends AbstractMigrateCommand
     if (!$migrationDirectory)
     {
       $output->writeln("<fg=red>Cannot use the migrate:make command without specifying a default migration directory and namespace in electra.yaml</>");
-      die;
+      return Command::FAILURE;
     }
 
     $migrationFileTemplate = file_get_contents(realpath(__DIR__ . '/FileTemplate/Migration.template'));
@@ -139,5 +140,7 @@ class MigrateMakeCliCommand extends AbstractMigrateCommand
     file_put_contents($outputFilePath, $fileContents);
 
     $output->writeln("<fg=green>Migration created successfully: $filename</>");
+
+    return Command::SUCCESS;
   }
 }
