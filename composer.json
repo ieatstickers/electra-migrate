@@ -1,47 +1,47 @@
 {
-	"name": "electra/migrate",
-	"repositories": [
-		{
-			"type": "vcs",
-			"url":  "https://github.com/ieatstickers/electra-utility.git"
-		},
-		{
-			"type": "vcs",
-			"url":  "https://github.com/ieatstickers/electra-config.git"
-		},
-		{
-			"type": "vcs",
-			"url":  "https://github.com/ieatstickers/electra-core.git"
-		},
-		{
-			"type": "vcs",
-			"url":  "https://github.com/ieatstickers/electra-dal.git"
-		},
-		{
-			"type": "vcs",
-			"url":  "https://github.com/ieatstickers/electra-web.git"
-		},
-		{
-			"type": "vcs",
-			"url":  "https://github.com/ieatstickers/electra-jwt.git"
-		}
-	],
-	"require": {
-		"electra/core": "dev-php8.1-upgrade",
-		"electra/config": "dev-php8.1-upgrade",
-		"electra/utility": "dev-php8.1-upgrade",
-		"electra/dal": "dev-php8.1-upgrade"
-	},
-	"require-dev" : {
-	},
-	"authors": [
-		{
-			"name": "Mike Burke"
-		}
-	],
-	"autoload": {
-		"psr-4": {
-			"Electra\\Migrate\\": "src"
-		}
-	}
+  "name": "electra/migrate",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/ieatstickers/electra-utility.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/ieatstickers/electra-config.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/ieatstickers/electra-core.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/ieatstickers/electra-dal.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/ieatstickers/electra-web.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/ieatstickers/electra-jwt.git"
+    }
+  ],
+  "require": {
+    "electra/core": "dev-php8.1-upgrade",
+    "electra/config": "dev-php8.1-upgrade",
+    "electra/utility": "dev-php8.1-upgrade",
+    "electra/dal": "dev-php8.1-upgrade"
+  },
+  "require-dev": {
+  },
+  "authors": [
+    {
+      "name": "Mike Burke"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Electra\\Migrate\\": "src"
+    }
+  }
 }
