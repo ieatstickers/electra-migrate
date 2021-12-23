@@ -41,7 +41,7 @@ class MigrateStatusCliCommand extends AbstractMigrateCommand
     if (!$migrationDirsConfig)
     {
       $output->writeln("<fg=red>'migrationsDirs' not found in electra.yaml</>");
-      return Command::FAILURE;
+      return Command::INVALID;
     }
 
     $allFilesPayload->migrationDirs = $migrationDirsConfig;
@@ -57,7 +57,7 @@ class MigrateStatusCliCommand extends AbstractMigrateCommand
     if (!file_exists($configFilepath))
     {
       $output->writeln("<fg=red>electra.yaml not found in project root: $configFilepath</>");
-      return Command::FAILURE;
+      return Command::INVALID;
     }
 
     $groupDisplayNamesByKey = [];

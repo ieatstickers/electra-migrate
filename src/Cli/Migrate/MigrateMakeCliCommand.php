@@ -49,7 +49,7 @@ class MigrateMakeCliCommand extends AbstractMigrateCommand
     )
     {
       $output->writeln("<fg=red>Connection and table options must be provided together or not at all.</>");
-      return Command::FAILURE;
+      return Command::INVALID;
     }
 
     $inputDir = $input->getArgument('migrationDir');
@@ -66,7 +66,7 @@ class MigrateMakeCliCommand extends AbstractMigrateCommand
       if (!$migrationNamespace)
       {
         $output->writeln("<fg=red>No namespace found for migration directory: $inputDir</>");
-        return Command::FAILURE;
+        return Command::INVALID;
       }
     }
     else
@@ -82,7 +82,7 @@ class MigrateMakeCliCommand extends AbstractMigrateCommand
           if (!$migrationNamespace)
           {
             $output->writeln("<fg=red>No namespace found for default migration directory: $dirKey</>");
-            return Command::FAILURE;
+            return Command::INVALID;
           }
 
           break;
@@ -94,7 +94,7 @@ class MigrateMakeCliCommand extends AbstractMigrateCommand
     if (!$migrationDirectory)
     {
       $output->writeln("<fg=red>Cannot use the migrate:make command without specifying a default migration directory and namespace in electra.yaml</>");
-      return Command::FAILURE;
+      return Command::INVALID;
     }
 
     $migrationFileTemplate = file_get_contents(realpath(__DIR__ . '/FileTemplate/Migration.template'));
