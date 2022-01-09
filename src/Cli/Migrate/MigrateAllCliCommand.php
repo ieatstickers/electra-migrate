@@ -2,7 +2,6 @@
 
 namespace Electra\Migrate\Cli\Migrate;
 
-use Electra\Config\Config;
 use Electra\Migrate\Event\MigrateAll\MigrateAllPayload;
 use Electra\Migrate\Event\MigrationEvents;
 use Symfony\Component\Console\Command\Command;
@@ -29,7 +28,7 @@ class MigrateAllCliCommand extends AbstractMigrateCommand
   {
     $migrateAllPayload = MigrateAllPayload::create();
     $migrateAllPayload->output = $output;
-    $migrateAllPayload->migrationDirs = Config::getByPath('electra:migrate:migrationDirs');
+    $migrateAllPayload->migrationDirs = $this->getContext()->getConfig()->getByPath('electra:migrate:migrationDirs');
 
     $migrateAllResponse = MigrationEvents::migrateAll($migrateAllPayload);
 

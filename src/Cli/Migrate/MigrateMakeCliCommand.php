@@ -3,7 +3,6 @@
 namespace Electra\Migrate\Cli\Migrate;
 
 use Carbon\Carbon;
-use Electra\Config\Config;
 use Electra\Utility\Arrays;
 use Electra\Utility\Strings;
 use Symfony\Component\Console\Command\Command;
@@ -35,7 +34,7 @@ class MigrateMakeCliCommand extends AbstractMigrateCommand
    */
   protected function execute(InputInterface $input, OutputInterface $output)
   {
-    $outputMigrationDirectories = Config::getByPath('electra:migrate:migrationDirs');
+    $outputMigrationDirectories = $this->getContext()->getConfig()->getByPath('electra:migrate:migrationDirs');
     $migrationDirectory = null;
     $migrationName = $input->getArgument('name');
     $migrationConnection = $input->getArgument('connection');

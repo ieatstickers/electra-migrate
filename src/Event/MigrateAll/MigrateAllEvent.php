@@ -3,7 +3,6 @@
 namespace Electra\Migrate\Event\MigrateAll;
 
 use Carbon\Carbon;
-use Electra\Config\Config;
 use Electra\Core\Event\AbstractEvent;
 use Electra\Migrate\Data\Migration;
 use Electra\Migrate\Data\MigrationFile;
@@ -29,7 +28,7 @@ class MigrateAllEvent extends AbstractEvent
   {
     $allFilesPayload = GetAllFilesByGroupPayload::create();
     $output = $payload->output;
-    $allFilesPayload->migrationDirs = Config::getByPath('electra:migrate:migrationDirs');
+    $allFilesPayload->migrationDirs = $this->getContext()->getConfig()->getByPath('electra:migrate:migrationDirs');
     $allFilesByGroupResponse = MigrationEvents::getAllFilesByGroup($allFilesPayload);
     $executedMigrationsByGroupAndName = Migration::getAllExecutedIndexedByGroupAndName();
     $lastExecuted = Migration::getLastExecuted();

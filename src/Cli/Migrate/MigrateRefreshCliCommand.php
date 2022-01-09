@@ -2,7 +2,6 @@
 
 namespace Electra\Migrate\Cli\Migrate;
 
-use Electra\Config\Config;
 use Electra\Dal\Database\Mysql\Mysql;
 use Electra\Migrate\Event\MigrateAll\MigrateAllPayload;
 use Electra\Migrate\Event\MigrationEvents;
@@ -41,7 +40,7 @@ class MigrateRefreshCliCommand extends AbstractMigrateCommand
     }
 
     $defaultConnectionName = Mysql::connection()->getName();
-    $allConnections = Config::getByPath('electra:dal:connections');
+    $allConnections = $this->getContext()->getConfig()->getByPath('electra:dal:connections');
 
     $defaultConnectionDbName = null;
 
@@ -79,7 +78,7 @@ class MigrateRefreshCliCommand extends AbstractMigrateCommand
     $output->writeln("<fg=green>All databases cleared successfully</>");
 
     $migrateAllPayload = MigrateAllPayload::create();
-    $migrateAllPayload->migrationDirs = Config::getByPath("electra:migrate:migrationDirs");
+    $migrateAllPayload->migrationDirs = $this->getContext()->getConfig()->getByPath("electra:migrate:migrationDirs");
     $migrateAllPayload->output = $output;
     $migrateAllResponse = MigrationEvents::migrateAll($migrateAllPayload);
 

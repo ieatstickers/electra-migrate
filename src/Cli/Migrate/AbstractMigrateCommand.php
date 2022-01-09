@@ -6,6 +6,9 @@ use Electra\Core\Context\ContextAware;
 use Electra\Migrate\Context\MigrateContext;
 use Symfony\Component\Console\Command\Command;
 
+/**
+ * @method MigrateContext getContext()
+ */
 abstract class AbstractMigrateCommand extends Command
 {
   use ContextAware;

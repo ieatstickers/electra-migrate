@@ -2,7 +2,6 @@
 
 namespace Electra\Migrate\Cli\Migrate;
 
-use Electra\Config\Config;
 use Electra\Migrate\Event\MigrateRollback\MigrateRollbackPayload;
 use Electra\Migrate\Event\MigrationEvents;
 use Symfony\Component\Console\Command\Command;
@@ -30,7 +29,7 @@ class MigrateRollbackCliCommand extends AbstractMigrateCommand
   {
     $migrateRollbackPayload = MigrateRollbackPayload::create();
     $migrateRollbackPayload->output = $output;
-    $migrateRollbackPayload->migrationDirs = Config::getByPath('electra:migrate:migrationDirs');
+    $migrateRollbackPayload->migrationDirs = $this->getContext()->getConfig()->getByPath('electra:migrate:migrationDirs');
 
     $migrateAllResponse = MigrationEvents::rollback($migrateRollbackPayload);
 

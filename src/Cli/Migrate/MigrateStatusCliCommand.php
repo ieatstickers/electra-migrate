@@ -2,7 +2,6 @@
 
 namespace Electra\Migrate\Cli\Migrate;
 
-use Electra\Config\Config;
 use Electra\Migrate\Data\Migration;
 use Electra\Migrate\Event\GetAllFilesByGroup\GetAllFilesByGroupPayload;
 use Electra\Migrate\Event\MigrationEvents;
@@ -36,7 +35,7 @@ class MigrateStatusCliCommand extends AbstractMigrateCommand
     // Get all migration files
     $allFilesPayload = GetAllFilesByGroupPayload::create();
     $allFilesPayload->output = $output;
-    $migrationDirsConfig = Config::getByPath('electra:migrate:migrationDirs');
+    $migrationDirsConfig = $this->getContext()->getConfig()->getByPath('electra:migrate:migrationDirs');
 
     if (!$migrationDirsConfig)
     {

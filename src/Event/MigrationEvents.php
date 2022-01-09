@@ -2,6 +2,7 @@
 
 namespace Electra\Migrate\Event;
 
+use Electra\Migrate\Context\MigrateContext;
 use Electra\Migrate\Event\GetAllFilesByGroup\GetAllFilesByGroupPayload;
 use Electra\Migrate\Event\GetAllFilesByGroup\GetAllFilesByGroupResponse;
 use Electra\Migrate\Event\GetAllFilesByGroup\GetAllFilesByGroupEvent;
@@ -21,7 +22,9 @@ class MigrationEvents
    */
   public static function getAllFilesByGroup(GetAllFilesByGroupPayload $payload): GetAllFilesByGroupResponse
   {
-    return (new GetAllFilesByGroupEvent())->execute($payload);
+    return (new GetAllFilesByGroupEvent())
+      ->setContext(MigrateContext::getContext())
+      ->execute($payload);
   }
 
   /**
@@ -31,7 +34,9 @@ class MigrationEvents
    */
   public static function migrateAll(MigrateAllPayload $payload): MigrateAllResponse
   {
-    return (new MigrateAllEvent())->execute($payload);
+    return (new MigrateAllEvent())
+      ->setContext(MigrateContext::getContext())
+      ->execute($payload);
   }
 
   /**
@@ -41,7 +46,9 @@ class MigrationEvents
    */
   public static function rollback(MigrateRollbackPayload $payload): MigrateRollbackResponse
   {
-    return (new MigrateRollbackEvent())->execute($payload);
+    return (new MigrateRollbackEvent())
+      ->setContext(MigrateContext::getContext())
+      ->execute($payload);
   }
 
 }
