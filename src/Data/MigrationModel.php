@@ -15,8 +15,8 @@ use Illuminate\Database\Schema\Blueprint;
  */
 class MigrationModel extends IndependentModel
 {
-  protected $connection = 'electra';
-  protected $table = 'migration';
+  protected string $connection = 'electra';
+  protected string $table = 'migration';
   protected $dates = [ 'executed' ];
 
   /**
